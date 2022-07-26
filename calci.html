@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Calculator</title>
+<script type="text/javascript">
+function history(value) {
+document.getElementById("historyfield").value=value; }
+function display(value) {
+var i = document.getElementById("textfield");
+if(i.value==0) {
+i.value=value; }
+else
+{ 
+i.value+=value; }}
+function solve() {
+var x = document.getElementById("textfield");
+history(x.value);
+var r = x.value.replace("x","*");
+r = r.replace("%","*0.01*");
+var y = eval(r);
+document.getElementById("textfield").value=y; }
+function clr() {
+document.getElementById("historyfield").value="";
+document.getElementById("textfield").value=0; }
+function backspace() {
+var a = document.getElementById("textfield");
+if(a.value.length==1) {
+a.value=0; }
+else {
+a.value=a.value.substring(0,a.value.length-1); }
+
+
+}
+function changesign() {
+document.getElementById("textfield").value *= (-1); }
+</script>
+<style>
+.cal {
+background-color: #f3f3f4;
+border-radius: 15px;
+width: 395px;
+box-shadow: 1px 2px 20px 0px;
+margin: 0px auto;
+margin-top: 30px;
+padding-bottom: 15px; }
+#historyfield {
+padding-top: 30px;
+height:40px;
+font-size: 18px; }
+#textfield {
+font-size:33px;
+height:45px; }
+input[type="text"] {
+width: 97%;
+border:none;
+background-color: #f3f3f4; }
+input[type="button"] {
+width: 75px;
+height: 75px;
+border-radius: 50%;
+font-size: 32px;
+color: white;
+background-color: #2196F3;
+border: none; }
+input:focus{
+outline:none; }
+
+td
+{
+padding: 4px;
+}
+.top input[type="button"]
+{
+background-color: #607d8b;
+}
+tr td:last-child input[type="button"]
+{
+background-color: #00BCD4;
+}
+tr td:first-child input[type="button"]
+{
+margin-left:20px;
+}
+#bksp
+{
+padding: 0px 2px 4px 0px;
+font-size: 40px;
+}
+</style>
+</head>
+<body>
+<div class="cal">
+<table>
+<tr>
+<td colspan=4>
+<div class="text-div">
+<input style="text-align:right;" readonly type="text" id ="historyfield" value=""/>
+<input style="text-align:right;" type="text" id ="textfield" value="0"/>
+</div>
+</td>
+</tr>
+<tr>
+<td class="top"><input type="button" value="C" onclick="clr()"/></td>
+<td class="top"><input type="button" value="+/-" onclick="changesign()"/></td>
+<td class="top"><input type="button" value="%" onclick="display('%')"/></td>
+<td class="top"><input type="button" value="/" onclick="display('/')"/></td>
+</tr>
+<tr>
+<td><input type="button" value="7" onclick="display('7')"/></td>
+<td><input type="button" value="8" onclick="display('8')"/></td>
+<td><input type="button" value="9" onclick="display('9')"/></td>
+<td><input type="button" value="x" onclick="display('x')"/></td>
+</tr>
+<tr>
+
+<td><input type="button" value="4" onclick="display('4')"/></td>
+<td><input type="button" value="5" onclick="display('5')"/></td>
+<td><input type="button" value="6" onclick="display('6')"/></td>
+<td><input type="button" value="-" onclick="display('-')"/></td>
+</tr>
+<tr>
+<td><input type="button" value="1" onclick="display('1')"/></td>
+<td><input type="button" value="2" onclick="display('2')"/></td>
+<td><input type="button" value="3" onclick="display('3')"/></td>
+<td><input type="button" value="+" onclick="display('+')"/></td>
+</tr>
+<tr>
+<td><input type="button" value="0" onclick="display('0')"/></td>
+<td><input type="button" value="." onclick="display('.')"/></td>
+<td><input type="button" value="&#9003;" onclick="backspace()" id="bksp"/></td>
+<td><input type="button" value="=" onclick="solve()"/></td>
+</tr>
+</table>
+</div>
+</body>
+</html>
